@@ -12,9 +12,9 @@ const (
 )
 
 // Wifi 根据是否具有 WiFi 来进行分类
-func Wifi(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
+func Wifi(infos []*core.ElecCarInfo) ([KindsOfPriceOptions][]uint64, int, string) {
 	// 由于 price 只有 0，1，2，3 这四种，所以直接用 array 替代 map
-	var data [4][]uint64
+	var data [KindsOfPriceOptions][]uint64
 
 	for i := 0; i < KindsOfPriceOptions; i++ {
 		data[i] = make([]uint64, KindsOfWifiOptions)
@@ -31,8 +31,8 @@ func Wifi(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
 	return data, KindsOfWifiOptions, "hasWifi"
 }
 
-func Bluetooth(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
-	var data [4][]uint64
+func Bluetooth(infos []*core.ElecCarInfo) ([KindsOfPriceOptions][]uint64, int, string) {
+	var data [KindsOfPriceOptions][]uint64
 
 	for i := 0; i < KindsOfPriceOptions; i++ {
 		data[i] = make([]uint64, KindsOfBluetoothOptions)
@@ -49,8 +49,8 @@ func Bluetooth(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
 	return data, KindsOfBluetoothOptions, "hasBluetooth"
 }
 
-func DualSIM(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
-	var data [4][]uint64
+func DualSIM(infos []*core.ElecCarInfo) ([KindsOfPriceOptions][]uint64, int, string) {
+	var data [KindsOfPriceOptions][]uint64
 
 	for i := 0; i < KindsOfPriceOptions; i++ {
 		data[i] = make([]uint64, KindsOfDualSIMOptions)
