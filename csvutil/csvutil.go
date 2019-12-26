@@ -50,10 +50,6 @@ func ReadRecord(filename string) []*core.ElecCarInfo {
 	return elecCarInfos
 }
 
-func Classify(elecCarInfos []*core.ElecCarInfo, fieldID int) map[uint64][]*ElecCarInfo {
-	return nil
-}
-
 func parseRecord(record []string) (*core.ElecCarInfo, error) {
 	energy, _ := strconv.ParseUint(record[1], 10, 64)
 	hasBluetooth, _ := strconv.ParseBool(record[2])
