@@ -7,6 +7,7 @@ import (
 
 const (
 	KindsOfWifiOptions  = 2
+	KindsOfBluetoothOptions = 2
 	KindsOfPriceOptions = 4
 )
 
@@ -28,4 +29,22 @@ func Wifi(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
 	}
 
 	return data, KindsOfWifiOptions, "hasWifi"
+}
+
+func Bluetooth(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
+	var data [4][]uint64
+
+	for i := 0; i < KindsOfPriceOptions; i++ {
+		data[i] = make([]uint64, KindsOfBluetoothOptions)
+	}
+
+	for _, v := range infos {
+		if v.HasBlueotooth {
+			data[v.Price][1]++
+		} else {
+			data[v.Price][0]++
+		}
+	}
+
+	return data, KindsOfBluetoothOptions, "hasBluetooth"
 }
