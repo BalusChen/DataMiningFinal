@@ -13,7 +13,7 @@ type ElecCarInfo struct {
 	FontCameraPixel   uint64  // feat5
 	Has4G             bool    // feat6
 	MemoryGB          uint64  // feat7
-	MoveDepth         uint64  // feat8
+	MoveDepth         float64 // feat8
 	Weight            uint64  // feat9
 	NumCores          uint64  // feat10
 	MainCameraPixel   uint64  // feat11

@@ -2,7 +2,6 @@ package csvutil
 
 import (
 	"encoding/csv"
-	"fmt"
 	"github.com/BalusChen/DataMiningFinalProject/core"
 	"os"
 	"strconv"
@@ -43,9 +42,11 @@ func ReadRecord(filename string) []*core.ElecCarInfo {
 		}
 	}
 
+	/*
 	for _, elecCarInfo := range elecCarInfos {
 		fmt.Printf("%+v\n", elecCarInfo)
 	}
+	 */
 
 	return elecCarInfos
 }
@@ -58,7 +59,7 @@ func parseRecord(record []string) (*core.ElecCarInfo, error) {
 	frontCameraPixel, _ := strconv.ParseUint(record[5], 10, 64)
 	has4G, _ := strconv.ParseBool(record[6])
 	memoryGB, _ := strconv.ParseUint(record[7], 10, 64)
-	moveDepth, _ := strconv.ParseUint(record[8], 10, 64)
+	moveDepth, _ := strconv.ParseFloat(record[8], 64)
 	weight, _ := strconv.ParseUint(record[9], 10, 64)
 	numCores, _ := strconv.ParseUint(record[10], 10, 64)
 	mainCameraPxiel, _ := strconv.ParseUint(record[11], 10, 64)
