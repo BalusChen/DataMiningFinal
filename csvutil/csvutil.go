@@ -56,7 +56,7 @@ func ReadRecord(filename string) []*ElecCarInfo {
 		panic(err)
 	}
 
-	elecCarInfos := make([]*ElecCarInfo, strconv.IntSize)
+	elecCarInfos := make([]*ElecCarInfo, 0, InitialArraySize)
 	for _, record := range records {
 		if len(record) != NumOfFields {
 			continue
