@@ -42,6 +42,10 @@ func drawDiscrete(records []*core.ElecCarInfo) {
 	// hasBluetooth?
 	results, kindsOfOptions, name = classify.Bluetooth(records)
 	draw.BarChart(results, kindsOfOptions, name)
+
+	// has Dual SIM?
+	results, kindsOfOptions, name = classify.DualSIM(records)
+	draw.BarChart(results, kindsOfOptions, name)
 }
 
 func drawContinous() {

@@ -4,11 +4,11 @@ import (
 	"github.com/BalusChen/DataMiningFinalProject/core"
 )
 
-
 const (
-	KindsOfWifiOptions  = 2
+	KindsOfWifiOptions      = 2
 	KindsOfBluetoothOptions = 2
-	KindsOfPriceOptions = 4
+	KindsOfDualSIMOptions   = 2
+	KindsOfPriceOptions     = 4
 )
 
 // Wifi 根据是否具有 WiFi 来进行分类
@@ -47,4 +47,22 @@ func Bluetooth(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
 	}
 
 	return data, KindsOfBluetoothOptions, "hasBluetooth"
+}
+
+func DualSIM(infos []*core.ElecCarInfo) ([4][]uint64, int, string) {
+	var data [4][]uint64
+
+	for i := 0; i < KindsOfPriceOptions; i++ {
+		data[i] = make([]uint64, KindsOfDualSIMOptions)
+	}
+
+	for _, v := range infos {
+		if v.HasDualSIM {
+			data[v.Price][1]++
+		} else {
+			data[v.Price][0]++
+		}
+	}
+
+	return data, KindsOfDualSIMOptions, "hasDualSIM"
 }
