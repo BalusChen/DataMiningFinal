@@ -53,7 +53,7 @@ func BarChart(infos [classify.KindsOfPriceOptions][]uint64, kindOfOptions int, c
 
 	p.Legend.Top = true
 	p.NominalX("0", "1", "2", "3")
-	if err := p.Save(5*vg.Inch, 5*vg.Inch, chartName + ".png"); err != nil {
+	if err := p.Save(5*vg.Inch, 5*vg.Inch, "images/" + chartName + ".png"); err != nil {
 		panic(err)
 	}
 }
