@@ -75,6 +75,7 @@ func ReadRecord(filename string) []*ElecCarInfo {
 }
 
 func Classify() map[interface{}]*ElecCarInfo {
+	return nil
 }
 
 func parseRecord(record []string) (*ElecCarInfo, error) {
