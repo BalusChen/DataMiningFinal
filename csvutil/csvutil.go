@@ -3,12 +3,12 @@ package csvutil
 import (
 	"encoding/csv"
 	"fmt"
+	"github.com/BalusChen/DataMiningFinalProject/core"
 	"os"
 	"strconv"
 )
 
 const (
-	NumOfFields      = 22
 	InitialArraySize = 100
 )
 
@@ -23,32 +23,7 @@ func newCSVReader(filename string) *csv.Reader {
 	return csv.NewReader(f)
 }
 
-type ElecCarInfo struct {
-	ID                string
-	Energy            uint64  // feat1
-	HasBlueotooth     bool    // feat2
-	InstructionSpeed  float64 // feat3
-	HasDualSIM        bool    // feat4
-	FontCameraPixel   uint64  // feat5
-	Has4G             bool    // feat6
-	MemoryGB          uint64  // feat7
-	MoveDepth         uint64  // feat8
-	Weight            uint64  // feat9
-	NumCores          uint64  // feat10
-	MainCameraPixel   uint64  // feat11
-	CameraPixelHeight uint64  // feat12
-	CameraPixelWidth  uint64  // feat13
-	RAMMB             uint64  // feat14
-	ScreenHeight      uint64  // feat15
-	ScreenWidth       uint64  // feat16
-	ChargeTime        uint64  // feat17
-	Has3G             bool    // feat18
-	HasTouchScreen    bool    // feat19
-	HasWifi           bool    // feat20
-	Price             uint64
-}
-
-func ReadRecord(filename string) []*ElecCarInfo {
+func ReadRecord(filename string) []*core.ElecCarInfo {
 	csvReader := newCSVReader(filename)
 	csvReader.Read() // skip title
 	records, err := csvReader.ReadAll()
@@ -56,9 +31,9 @@ func ReadRecord(filename string) []*ElecCarInfo {
 		panic(err)
 	}
 
-	elecCarInfos := make([]*ElecCarInfo, 0, InitialArraySize)
+	elecCarInfos := make([]*core.ElecCarInfo, 0, InitialArraySize)
 	for _, record := range records {
-		if len(record) != NumOfFields {
+		if len(record) != core.NumOfFields {
 			continue
 		}
 
@@ -75,11 +50,11 @@ func ReadRecord(filename string) []*ElecCarInfo {
 	return elecCarInfos
 }
 
-func Classify() map[interface{}]*ElecCarInfo {
+func Classify(elecCarInfos []*core.ElecCarInfo, fieldID int) map[uint64][]*ElecCarInfo {
 	return nil
 }
 
-func parseRecord(record []string) (*ElecCarInfo, error) {
+func parseRecord(record []string) (*core.ElecCarInfo, error) {
 	energy, _ := strconv.ParseUint(record[1], 10, 64)
 	hasBluetooth, _ := strconv.ParseBool(record[2])
 	instructionSpeed, _ := strconv.ParseFloat(record[3], 64)
@@ -102,7 +77,7 @@ func parseRecord(record []string) (*ElecCarInfo, error) {
 	hasWifi, _ := strconv.ParseBool(record[20])
 	price, _ := strconv.ParseUint(record[21], 10, 64)
 
-	elecCarInfo := &ElecCarInfo{
+	elecCarInfo := &core.ElecCarInfo{
 		record[0],
 		energy,
 		hasBluetooth,
