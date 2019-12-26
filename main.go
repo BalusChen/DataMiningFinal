@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"github.com/BalusChen/DataMiningFinalProject/classify"
+	"github.com/BalusChen/DataMiningFinalProject/core"
 	"github.com/BalusChen/DataMiningFinalProject/csvutil"
 	"github.com/BalusChen/DataMiningFinalProject/draw"
 )
@@ -23,12 +24,24 @@ func main() {
 	flag.Parse()
 
 	records := csvutil.ReadRecord(trainCSVFilename)
-	results, kindsOfOptions, name := classify.Wifi(records)
-	draw.BarChart(results, kindsOfOptions, name)
+
+	drawDiscrete(records)
 }
 
-func drawDiscrete() {
+func drawDiscrete(records []*core.ElecCarInfo) {
+	var (
+		results        [4][]uint64
+		kindsOfOptions int
+		name           string
+	)
 
+	// hasWifi?
+	results, kindsOfOptions, name = classify.Wifi(records)
+	draw.BarChart(results, kindsOfOptions, name)
+
+	// hasBluetooth?
+	results, kindsOfOptions, name = classify.Bluetooth(records)
+	draw.BarChart(results, kindsOfOptions, name)
 }
 
 func drawContinous() {
