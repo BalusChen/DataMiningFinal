@@ -50,6 +50,7 @@ type ElecCarInfo struct {
 
 func ReadRecord(filename string) []*ElecCarInfo {
 	csvReader := newCSVReader(filename)
+	csvReader.Read() // skip title
 	records, err := csvReader.ReadAll()
 	if err != nil {
 		panic(err)
